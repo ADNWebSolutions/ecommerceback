@@ -38,6 +38,10 @@ public class Item {
     
     @ManyToOne
     private Color color;
+    
+    private int actualStock;
+    
+    private int minStock;
 
     @Override
     public String toString() {
