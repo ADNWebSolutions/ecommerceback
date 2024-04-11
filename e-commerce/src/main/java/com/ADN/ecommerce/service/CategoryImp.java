@@ -8,40 +8,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryImp implements CategoryService{
+public class CategoryImp implements CategoryService {
     
     @Autowired
     private CategoryRepository repo;
-
+    
     @Override
     public Optional<Category> getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repo.findById(id);
     }
-
+    
     @Override
     public List<Category> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repo.findAll();        
     }
-
+    
     @Override
-    public Optional<Category> update(Category oldCategory) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Category update(Category newCategory, Long id) {
+        Category oldCategory = getById(id).orElseThrow(()
+                -> new RuntimeException("Category didn't find with the id: " + id ));
+        oldCategory.setDescription(newCategory.getDescription());
+        oldCategory.setName(newCategory.getName());
+        repo.save(oldCategory);
+        
+        return newCategory;
+        
     }
-
+    
     @Override
-    public void save(Category category) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Category save(Category category) {
+       return repo.save(category);
     }
-
+    
     @Override
     public boolean delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (existsById(id)) {
+            repo.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
-
+    
     @Override
     public boolean existsById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repo.existsById(id);
     }
-
     
 }

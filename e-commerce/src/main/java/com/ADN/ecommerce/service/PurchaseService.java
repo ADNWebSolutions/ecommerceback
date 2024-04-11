@@ -10,9 +10,9 @@ public interface PurchaseService {
 
     public List<Purchase> getAll();
 
-    public Optional<Purchase> update(Purchase purchase);
+    public Purchase update(Purchase newPurchase, Long id);
 
-    public void save(Purchase purchase);
+    public Purchase save(Purchase purchase);
 
     public boolean delete(Long id);
 

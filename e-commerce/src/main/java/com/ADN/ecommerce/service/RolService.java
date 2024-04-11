@@ -10,9 +10,9 @@ public interface RolService {
 
     public List<Rol> getAll();
 
-    public Optional<Rol> update(Rol oldRol);
+    public Rol update(Rol newRol, Long id);
 
-    public void save(Rol rol);
+    public Rol save(Rol rol);
 
     public boolean delete(Long id);
 

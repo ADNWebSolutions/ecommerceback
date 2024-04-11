@@ -10,9 +10,9 @@ public interface PurchaseDetailService {
 
     public List<PurchaseDetail> getAll();
 
-    public Optional<PurchaseDetail> update(PurchaseDetail oldDetail);
+    public PurchaseDetail update(PurchaseDetail newDetail, Long id);
 
-    public void save(PurchaseDetail detail);
+    public PurchaseDetail save(PurchaseDetail detail);
 
     public boolean delete(Long id);
 

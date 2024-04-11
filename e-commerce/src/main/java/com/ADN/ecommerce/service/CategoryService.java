@@ -10,9 +10,9 @@ public interface CategoryService {
     
     public List<Category> getAll();
     
-    public Optional<Category> update(Category oldCategory);
+    public Category update(Category newCategory, Long id);
     
-    public void save(Category category);
+    public Category save(Category category);
     
     public boolean delete(Long id);
     

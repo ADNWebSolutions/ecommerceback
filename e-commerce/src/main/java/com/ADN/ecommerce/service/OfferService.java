@@ -10,9 +10,9 @@ public interface OfferService {
 
     public List<Offer> getAll();
 
-    public Optional<Offer> update(Offer oldOffer);
+    public Offer update(Offer newOffer, Long id);
 
-    public void save(Offer offer);
+    public Offer save(Offer offer);
 
     public boolean delete(Long id);
 

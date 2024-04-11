@@ -10,9 +10,9 @@ public interface ColorService {
     
     public List<Color> getAll();
     
-    public Optional<Color> update(Color oldColor);
+    public Color update(Color oldColor, Long id);
     
-    public void save(Color color);
+    public Color save(Color color);
     
     public boolean delete(Long id);
     

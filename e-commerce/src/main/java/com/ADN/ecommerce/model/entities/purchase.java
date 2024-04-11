@@ -14,22 +14,29 @@ import lombok.Setter;
 
 @Table
 @Entity
-@Getter@Setter
+@Getter
+@Setter
 public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
     private User user;
-    
+
     private User reseller;
-    
+
     private LocalDate date;
-    
+
     @OneToMany
     private List<PurchaseDetail> details;
-    
-    private float totalAmount;  
+
+    private float totalAmount;
+
+    public void calculateTotalAmount() {
+        totalAmount = 0;
+        details.forEach(detail -> totalAmount
+                += detail.getAmount());
+    }
 }
