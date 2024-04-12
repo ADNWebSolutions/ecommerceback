@@ -12,7 +12,7 @@ public class AppConfig {
     @Bean
     public DataSource getDataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.mysql.cj.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUsername("Leon");
         dataSource.setPassword("yoProgramo");
         dataSource.setUrl("jdbc:mysql://localhost::3306/e_commerce");        

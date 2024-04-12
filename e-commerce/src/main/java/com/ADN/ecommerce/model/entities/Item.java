@@ -4,50 +4,55 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Table
 @Entity
-@Getter@Setter
+@Getter
+@Setter
 public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;    
-    
+    private Long id;
+
     private String name;
-    
+
     private String description;
-    
-    @ManyToOne
-    private Category category;
-    
+
     private int heigth;
-    
+
     private int width;
-    
+
     private int weight;
-    
+
     private int depth;
-    
+
     private int capacity;
-    
-    @ManyToOne
-    private Color color;
-    
+
     private int actualStock;
-    
+
     private int minStock;
 
-    @Override
-    public String toString() {
-        return "Item{" + "id=" + id + ", name=" + name + ", description=" + description + ", heigth=" + heigth + ", width=" + width + ", weight=" + weight + ", depth=" + depth + ", capacity=" + capacity + '}';
-    }
-    
-    
-            
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "color_id")
+    private Color color;
+
+    @ManyToMany(mappedBy = "items")
+    private List<Offer> offers;
+
+    @OneToMany(mappedBy = "item")
+    private List<PurchaseDetail> details;
+
 }
