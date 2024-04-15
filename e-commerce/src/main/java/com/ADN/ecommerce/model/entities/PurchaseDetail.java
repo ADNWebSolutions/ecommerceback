@@ -32,4 +32,7 @@ public class PurchaseDetail {
     @JoinColumn(name = "item_id")
     private Item item;
 
+
+
+
 }
