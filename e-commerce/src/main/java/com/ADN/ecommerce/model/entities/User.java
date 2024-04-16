@@ -1,11 +1,12 @@
 package com.ADN.ecommerce.model.entities;
 
+import com.ADN.ecommerce.security.Role;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
@@ -34,9 +35,12 @@ public class User {
     @OneToMany(mappedBy = "reseller")
     private List<Purchase> sellings;
     
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rol;
+    */
     
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }
