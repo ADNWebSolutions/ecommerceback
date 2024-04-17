@@ -15,7 +15,7 @@ public class AppConfig {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUsername("Leon");
         dataSource.setPassword("yoProgramo");
-        dataSource.setUrl("jdbc:mysql://localhost::3306/e_commerce");        
+        dataSource.setUrl("jdbc:mysql://localhost:3306/e_commerce");        
         return dataSource;
         
     }

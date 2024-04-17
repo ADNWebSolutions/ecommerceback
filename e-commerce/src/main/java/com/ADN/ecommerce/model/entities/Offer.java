@@ -23,7 +23,7 @@ public class Offer {
     private Long id;
     
     @ManyToMany
-    @JoinTable(name = "iffer_item",
+    @JoinTable(name = "offer_item",
             joinColumns = @JoinColumn(name = "offer_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> items;

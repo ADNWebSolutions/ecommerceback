@@ -1,4 +1,4 @@
-package com.ADN.ecommerce.security;
+package com.ADN.ecommerce.security.enums;
 
 
 public enum Role {

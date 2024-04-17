@@ -1,6 +1,6 @@
 package com.ADN.ecommerce.model.entities;
 
-import com.ADN.ecommerce.security.Role;
+import com.ADN.ecommerce.security.enums.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
