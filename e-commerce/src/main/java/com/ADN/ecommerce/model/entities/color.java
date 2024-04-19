@@ -1,5 +1,6 @@
 package com.ADN.ecommerce.model.entities;
 
+import com.ADN.ecommerce.model.DTO.ColorDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,4 +24,13 @@ public class Color {
     
     @OneToMany(mappedBy =  "color")
     private List<Item> items;
+
+    public Color() {
+    }
+
+    public Color(ColorDTO dto) {
+        this.name = dto.getName();
+    }
+    
+    
 }

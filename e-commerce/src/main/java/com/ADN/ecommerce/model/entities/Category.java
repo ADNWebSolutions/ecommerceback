@@ -1,5 +1,6 @@
 package com.ADN.ecommerce.model.entities;
 
+import com.ADN.ecommerce.model.DTO.CategoryDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,5 +30,10 @@ public class Category {
 
     public Category() {
     }
-    
+
+    public Category(CategoryDTO dto) {
+        this.name = dto.getName();
+        this.description = dto.getDescription();
+    }
+        
 }

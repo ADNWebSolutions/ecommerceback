@@ -1,5 +1,6 @@
 package com.ADN.ecommerce.model.entities;
 
+import com.ADN.ecommerce.model.DTO.ItemDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -54,5 +55,22 @@ public class Item {
 
     @OneToMany(mappedBy = "item")
     private List<PurchaseDetail> details;
+
+    public Item() {
+    }
+
+    public Item(ItemDTO dto) {
+        this.name = dto.getName();
+        this.description = dto.getDescription();
+        this.heigth = dto.getHeigth();
+        this.width = dto.getWidth();
+        this.weight = dto.getWeight();
+        this.depth = dto.getDepth();
+        this.capacity = dto.getCapacity();
+        this.actualStock = dto.getActualStock();
+        this.minStock = dto.getMinStock();
+    }
+    
+    
 
 }

@@ -1,5 +1,6 @@
 package com.ADN.ecommerce.model.entities;
 
+import com.ADN.ecommerce.model.DTO.PurchaseDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -43,4 +44,17 @@ public class Purchase {
         details.forEach(detail -> totalAmount
                 += detail.getAmount());
     }
+
+    public Purchase() {
+    }
+
+    public Purchase(PurchaseDTO dto, User user, User reseller) {
+        this.date = dto.getDate();
+        this.totalAmount = dto.getTotalAmount();
+        this.user = user;
+        this.reseller = reseller;
+    }
+    
+    
+    
 }

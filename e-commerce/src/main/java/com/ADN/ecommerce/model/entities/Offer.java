@@ -1,5 +1,6 @@
 package com.ADN.ecommerce.model.entities;
 
+import com.ADN.ecommerce.model.DTO.OfferDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,4 +36,16 @@ public class Offer {
     private String name;
     
     private String description;
+
+    public Offer() {
+    }
+
+    public Offer(OfferDTO dto) {
+        this.startDate = dto.getStartDate();
+        this.exprationDate = dto.getExprationDate();
+        this.name = dto.getName();
+        this.description = dto.getDescription();
+    }
+    
+    
 }

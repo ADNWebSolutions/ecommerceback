@@ -1,5 +1,6 @@
 package com.ADN.ecommerce.model.entities;
 
+import com.ADN.ecommerce.model.DTO.PurchaseDetailDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +33,17 @@ public class PurchaseDetail {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    public PurchaseDetail() {
+    }
 
+    public PurchaseDetail(PurchaseDetailDTO dto, Purchase purchase, Item item) {
+        this.amount = dto.getAmount();
+        this.actualPrice = dto.getActualPrice();
+        this.purchase = purchase;
+        this.item = item;
+    }
+
+    
 
 
 }

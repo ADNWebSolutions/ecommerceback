@@ -1,5 +1,6 @@
 package com.ADN.ecommerce.model.entities;
 
+import com.ADN.ecommerce.model.DTO.UserDTO;
 import com.ADN.ecommerce.security.enums.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -42,5 +43,17 @@ public class User {
     
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public User() {
+    }
+
+    public User(UserDTO dto, Role rol) {
+        this.name = dto.getName();
+        this.email = dto.getEmail();
+        this.password = dto.getPassword();
+        this.role = role;
+    }
+    
+    
 
 }
