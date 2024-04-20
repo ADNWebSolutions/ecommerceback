@@ -1,6 +1,6 @@
 package com.ADN.ecommerce.controller.rest;
 
-import com.ADN.ecommerce.model.entities.Item;
+import com.ADN.ecommerce.model.DTO.OfferDTO;
 import com.ADN.ecommerce.model.entities.Offer;
 import com.ADN.ecommerce.service.OfferService;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/offer")
 public class OfferController {
-    
+
     @Autowired
     private OfferService service;
 
@@ -43,19 +43,20 @@ public class OfferController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Offer> create(@RequestBody Offer offer) {
-        Offer it = service.save(offer);
-        return new ResponseEntity(it, HttpStatus.OK);
+    public ResponseEntity<Offer> create(@RequestBody OfferDTO offer) {
+        Offer off = new Offer(offer);
+        service.save(off);
+        return new ResponseEntity(off, HttpStatus.OK);
 
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Offer> update(@RequestBody Offer offer, @PathVariable("id") Long id) {
+    public ResponseEntity<Offer> update(@RequestBody OfferDTO offer, @PathVariable("id") Long id) {
         if (!service.existsById(id)) {
             return new ResponseEntity("that id Doesn't exists: " + id,
                     HttpStatus.BAD_REQUEST);
         } else {
-            Offer off = service.update(offer, id);
+            Offer off = service.update(new Offer(offer), id);
             return new ResponseEntity(off, HttpStatus.OK);
         }
     }

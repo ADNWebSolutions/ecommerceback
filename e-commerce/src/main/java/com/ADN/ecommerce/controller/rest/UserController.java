@@ -1,7 +1,8 @@
 package com.ADN.ecommerce.controller.rest;
 
-import com.ADN.ecommerce.model.entities.Category;
+import com.ADN.ecommerce.model.DTO.UserDTO;
 import com.ADN.ecommerce.model.entities.User;
+import com.ADN.ecommerce.security.enums.Role;
 import com.ADN.ecommerce.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +17,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    
+
     @Autowired
     private UserService service;
 
-     @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getById(@PathVariable("id") Long id) {
 
         if (!service.existsById(id)) {
             return new ResponseEntity("that id Doesn't exists: " + id,
-                     HttpStatus.BAD_REQUEST);
+                    HttpStatus.BAD_REQUEST);
         } else {
             User user = service.getById(id).get();
             return new ResponseEntity(user, HttpStatus.OK);
@@ -39,36 +39,39 @@ public class UserController {
     @GetMapping("/getAll")
     public ResponseEntity<List<User>> getAll() {
         List<User> list = service.getAll();
-        
+
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<User> create(@RequestBody User user) {
-        User u = service.save(user);
+    public ResponseEntity<User> create(@RequestBody UserDTO user) {
+        User u = new User(user, Role.ROLE_USER);
+
+        service.save(u);
         return new ResponseEntity(u, HttpStatus.OK);
-        
+
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<User> update(@RequestBody User user, @PathVariable("id") Long id) {
-        if(!service.existsById(id)){
+    public ResponseEntity<User> update(@RequestBody UserDTO user, @PathVariable("id") Long id) {
+        if (!service.existsById(id)) {
             return new ResponseEntity("that id Doesn't exists: " + id,
-                     HttpStatus.BAD_REQUEST);
+                    HttpStatus.BAD_REQUEST);
         } else {
-            User u = service.update(user, id);
+            User u = service.update(
+                    new User(user, Role.ROLE_USER), id);
             return new ResponseEntity(u, HttpStatus.OK);
-        }      
+        }
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<User> delete(@PathVariable Long id) {
-        if(service.delete(id)){
+        if (service.delete(id)) {
             return new ResponseEntity("Deleted Completed", HttpStatus.OK);
-            
-        }else{
-             return new ResponseEntity("that id Doesn't exists: " + id,
-                     HttpStatus.BAD_REQUEST);
+
+        } else {
+            return new ResponseEntity("that id Doesn't exists: " + id,
+                    HttpStatus.BAD_REQUEST);
         }
 
     }

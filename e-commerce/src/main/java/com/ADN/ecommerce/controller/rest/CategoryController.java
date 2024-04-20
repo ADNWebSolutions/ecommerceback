@@ -1,5 +1,6 @@
 package com.ADN.ecommerce.controller.rest;
 
+import com.ADN.ecommerce.model.DTO.CategoryDTO;
 import com.ADN.ecommerce.model.entities.Category;
 import com.ADN.ecommerce.service.CategoryService;
 import java.util.List;
@@ -27,7 +28,7 @@ public class CategoryController {
 
         if (!service.existsById(id)) {
             return new ResponseEntity("that id Doesn't exists: " + id,
-                     HttpStatus.BAD_REQUEST);
+                    HttpStatus.BAD_REQUEST);
         } else {
             Category category = service.getById(id).get();
             return new ResponseEntity(category, HttpStatus.OK);
@@ -37,36 +38,40 @@ public class CategoryController {
     @GetMapping("/getAll")
     public ResponseEntity<List<Category>> getAll() {
         List<Category> list = service.getAll();
-        
+
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Category> create(@RequestBody Category category) {
-        Category cat = service.save(category);
-        return new ResponseEntity(cat, HttpStatus.OK);
+    public ResponseEntity<Category> create(@RequestBody CategoryDTO category) {
+
+        Category cat = new Category(category);
+        service.save(cat);
         
+        return new ResponseEntity(cat, HttpStatus.OK);
+
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Category> update(@RequestBody Category category, @PathVariable("id") Long id) {
-        if(!service.existsById(id)){
+    public ResponseEntity<Category> update(@RequestBody CategoryDTO category, @PathVariable("id") Long id) {
+        if (!service.existsById(id)) {
             return new ResponseEntity("that id Doesn't exists: " + id,
-                     HttpStatus.BAD_REQUEST);
+                    HttpStatus.BAD_REQUEST);
         } else {
-            Category cat = service.update(category, id);
+            Category cat = service.update(new Category(category),
+                    id);
             return new ResponseEntity(cat, HttpStatus.OK);
-        }      
+        }
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Category> delete(@PathVariable Long id) {
-        if(service.delete(id)){
+        if (service.delete(id)) {
             return new ResponseEntity("Deleted Completed", HttpStatus.OK);
-            
-        }else{
-             return new ResponseEntity("that id Doesn't exists: " + id,
-                     HttpStatus.BAD_REQUEST);
+
+        } else {
+            return new ResponseEntity("that id Doesn't exists: " + id,
+                    HttpStatus.BAD_REQUEST);
         }
 
     }
