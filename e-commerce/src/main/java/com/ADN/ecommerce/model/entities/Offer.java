@@ -36,6 +36,8 @@ public class Offer {
     private String name;
     
     private String description;
+    
+    private double discountRate;
 
     public Offer() {
     }
@@ -45,6 +47,7 @@ public class Offer {
         this.exprationDate = dto.getExprationDate();
         this.name = dto.getName();
         this.description = dto.getDescription();
+        this.discountRate = dto.getDiscountRate();
     }
     
     

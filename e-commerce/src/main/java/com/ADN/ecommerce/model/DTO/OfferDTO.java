@@ -15,4 +15,6 @@ public class OfferDTO {
     private String name;
     
     private String description;
+    
+    private double discountRate;
 }

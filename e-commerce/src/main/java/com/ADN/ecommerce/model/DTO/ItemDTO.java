@@ -24,4 +24,8 @@ public class ItemDTO {
 
     private int minStock;
 
+    private float price;
+    
+    private String imageURL;
+
 }

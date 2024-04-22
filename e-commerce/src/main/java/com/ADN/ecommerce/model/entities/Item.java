@@ -41,6 +41,10 @@ public class Item {
     private int actualStock;
 
     private int minStock;
+    
+    private float price;
+    
+    private String imageURL;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -69,6 +73,8 @@ public class Item {
         this.capacity = dto.getCapacity();
         this.actualStock = dto.getActualStock();
         this.minStock = dto.getMinStock();
+        this.price = dto.getPrice();
+        this.imageURL = dto.getImageURL();
     }
     
     
